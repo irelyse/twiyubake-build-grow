@@ -32,18 +32,18 @@ const MetricCard = ({
     : 'text-muted-foreground';
 
   return (
-    <Card className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+    <Card className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1 rounded-2xl border border-border/50">
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-muted-foreground">{title}</p>
-            <p className="text-2xl font-bold text-foreground mt-2">{value}</p>
-            <p className={`text-xs mt-2 ${changeColor}`}>
+            <p className="text-sm font-medium text-muted-foreground font-inter">{title}</p>
+            <p className="text-2xl font-bold text-foreground mt-2 font-poppins">{value}</p>
+            <p className={`text-xs mt-2 font-inter ${changeColor}`}>
               {change}
             </p>
           </div>
           <div className={`
-            w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center border
+            w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center border transition-all duration-300
             ${colorClasses[color]}
           `}>
             <Icon className="w-6 h-6" />

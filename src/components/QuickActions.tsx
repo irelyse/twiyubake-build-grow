@@ -37,7 +37,7 @@ const QuickActions = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center space-x-2">
+        <CardTitle className="flex items-center space-x-2 font-poppins">
           <Plus className="h-5 w-5 text-primary" />
           <span>Quick Actions</span>
         </CardTitle>
