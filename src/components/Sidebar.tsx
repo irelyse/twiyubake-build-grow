@@ -11,39 +11,47 @@ import {
   Truck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const navigation = [
-  { name: "Dashboard", icon: LayoutDashboard, current: true },
-  { name: "Jobs & Services", icon: Wrench, current: false },
-  { name: "Equipment Rental", icon: Truck, current: false },
-  { name: "Inventory", icon: Package, current: false },
-  { name: "Employees", icon: UserCheck, current: false },
-  { name: "Customers", icon: Users, current: false },
-  { name: "Finances", icon: DollarSign, current: false },
-  { name: "Reports", icon: FileText, current: false },
-  { name: "Analytics", icon: BarChart3, current: false },
-  { name: "Settings", icon: Settings, current: false },
+  { name: "Dashboard", icon: LayoutDashboard, href: "/" },
+  { name: "Jobs", icon: Wrench, href: "/jobs" },
+  { name: "Equipment", icon: Package, href: "/equipment" },
+  { name: "Employees", icon: UserCheck, href: "/employees" },
+  { name: "Customers", icon: Users, href: "/customers" },
+  { name: "Finances", icon: DollarSign, href: "/finances" },
+  { name: "Reports", icon: FileText, href: "/reports" },
+  { name: "Analytics", icon: BarChart3, href: "/analytics" },
+  { name: "Settings", icon: Settings, href: "/settings" },
 ];
 
 const Sidebar = () => {
+  const location = useLocation();
+  
   return (
     <div className="hidden md:flex flex-col w-64 bg-card border-r border-border">
       <div className="flex-1 flex flex-col pt-6 pb-4 overflow-y-auto">
         <nav className="mt-5 flex-1 px-4 space-y-2">
           {navigation.map((item) => {
             const Icon = item.icon;
+            const isActive = location.pathname === item.href;
             return (
               <Button
                 key={item.name}
-                variant={item.current ? "default" : "ghost"}
-                className={`w-full justify-start text-left h-11 ${
-                  item.current 
-                    ? "bg-primary text-primary-foreground shadow-sm" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
+                variant={isActive ? "secondary" : "ghost"}
+                className={`
+                  w-full justify-start text-left h-11
+                  ${isActive 
+                    ? 'bg-primary/10 text-primary border-l-2 border-l-primary' 
+                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                  }
+                `}
+                asChild
               >
-                <Icon className="mr-3 h-5 w-5" />
-                {item.name}
+                <Link to={item.href}>
+                  <Icon className="mr-3 h-5 w-5" />
+                  {item.name}
+                </Link>
               </Button>
             );
           })}
